@@ -1,0 +1,24 @@
+Assemblage 23 — sito completo in HTML
+=====================================
+
+Apri index.html nel browser. Le pagine sono file veri: Musica, ogni scheda disco,
+Date, Bio, Media, Novità, Contatti, Privacy, Note legali.
+
+Dentro la cartella:
+- index.html e le altre pagine
+- musica/ e novita/ con le schede
+- media/ con le fotografie
+- stili.css e sito.js (menu, filtri, player, galleria, moduli)
+- favicon.svg
+
+I caratteri arrivano da Google Fonts se c’è rete. Senza rete restano i sostituti
+(Arial Narrow, Helvetica).
+
+Il player di Spotify e i video di YouTube hanno bisogno di internet.
+Se apri i file dal disco, alcuni browser bloccano l’embed: i link Spotify,
+Bandcamp e YouTube restano comunque attivi.
+
+I moduli (avvisi e contatti) non inviano email: come nel sito, restano sulla pagina.
+
+Questo pacchetto non è assemblage23.com. Musica e nome restano di Tom Shear
+e dei titolari.
