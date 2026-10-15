@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Deploy Assemblage 23 Italia to GitHub Pages
 on:
   push:
     branches: [main]
@@ -12,31 +12,35 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Prepare website
+      - name: Prepare and validate website
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p _site
-          if [ -f site/index.html ]; then
-            cp -a site/. _site/
-          else
-            shopt -s nullglob
-            zips=(*-PAGES-READY.zip)
-            if [ "${#zips[@]}" -ne 1 ]; then
-              echo "::error::Upload site/ or one *-PAGES-READY.zip"; exit 1
-            fi
-            unzip -q "${zips[0]}" 'site/*' -d _extract
+          if [ -f assemblage23-italia-v20-PAGES-READY.zip ]; then
+            echo "Deploying definitive v20.0 archive"
+            unzip -q assemblage23-italia-v20-PAGES-READY.zip -d _extract
             test -f _extract/site/index.html
             cp -a _extract/site/. _site/
+          elif [ -f site/index.html ]; then
+            echo "Deploying existing site/ (v20.0 archive not yet uploaded)"
+            cp -a site/. _site/
+          else
+            echo "::error::No deployable website found"; exit 1
           fi
+          test -s _site/index.html
           touch _site/.nojekyll
-          test -f _site/index.html
+          if [ -f _site/a23-data.js ]; then
+            for f in a23-data.js image-slot.js support.js; do
+              test -s "_site/$f" || { echo "::error::Missing $f"; exit 1; }
+            done
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
