@@ -23,14 +23,14 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site
-          if [ -f assemblage23-italia-v20-PAGES-READY.zip ]; then
-            echo "Deploying definitive v20.0 archive"
+          if [ -f site/index.html ]; then
+            echo "Deploying editable site/ (canonical content)"
+            cp -a site/. _site/
+          elif [ -f assemblage23-italia-v20-PAGES-READY.zip ]; then
+            echo "Fallback: deploying historical v20.0 archive"
             unzip -q assemblage23-italia-v20-PAGES-READY.zip -d _extract
             test -f _extract/site/index.html
             cp -a _extract/site/. _site/
-          elif [ -f site/index.html ]; then
-            echo "Deploying existing site/ (v20.0 archive not yet uploaded)"
-            cp -a site/. _site/
           else
             echo "::error::No deployable website found"; exit 1
           fi
