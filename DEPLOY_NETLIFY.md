@@ -1,23 +1,33 @@
-# Metadata e pubblicazione — assemblage23-italia
+# Assemblage 23 Italia — Netlify, versione definitiva v20 DC
 
-**Descrizione GitHub consigliata**
+## Un'unica sorgente, due hosting
 
-Archivio italiano indipendente su Assemblage 23 e Tom Shear: biografia, discografia, singoli, remix, concerti, fonti e cultura EBM/futurepop.
+- Repository: https://github.com/salvatoresinatra0001-ux/assemblage23-italia
+- Branch di produzione: `main`
+- Cartella pubblicabile: `site/`
+- Comando di build: **nessuno**
+- Configurazione Netlify: `netlify.toml` nella radice della repository
+- HTML compilato v20 DC: `site/index.html`
+- URL canonico GitHub Pages: https://salvatoresinatra0001-ux.github.io/assemblage23-italia/
+- Progetto Netlify esistente: https://app.netlify.com/projects/assemblage23-italia
+- Indirizzo Netlify assegnato: https://assemblage23-italia.netlify.app/
 
-**Topics GitHub proposti**
+## Attivazione una tantum dal browser Netlify
 
-`assemblage23`, `tom-shear`, `ebm`, `futurepop`, `electronic-music`, `discography`, `music-archive`, `italian-fan-site`, `github-pages`, `netlify`
+Collegare il progetto Netlify già creato al repository GitHub `salvatoresinatra0001-ux/assemblage23-italia`. Impostare `main` come production branch, `site` come publish directory e nessun build command. Il primo deploy deve terminare con esito Published/Ready. Successivamente Netlify aggiorna il sito automaticamente a ogni push su `main`.
 
-**Origine definitiva:** `main`, directory di pubblicazione `site/`.
+Non ricreare il progetto Netlify e non utilizzare `preview/staging` come branch di produzione.
 
-**URL GitHub Pages:** https://salvatoresinatra0001-ux.github.io/assemblage23-italia/
+## Ambiente Preview indipendente
 
-**Repository:** https://github.com/salvatoresinatra0001-ux/assemblage23-italia
+- Progetto Netlify: https://app.netlify.com/projects/assemblage23-italia-preview
+- Branch: `preview/staging`
+- Build command: `bash preview/build.sh`
+- Directory pubblicabile: `_preview`
+- Indicizzazione disabilitata tramite robots.txt e X-Robots-Tag.
 
-**Netlify dashboard:** https://app.netlify.com/projects/assemblage23-italia
+La branch `preview/v21-predefinitiva` resta un'istantanea storica separata.
 
-**Netlify dominio previsto (valido dopo il primo deploy):** https://assemblage23-italia.netlify.app/
+## Stato delle verifiche
 
-**Configurazione:** il file `netlify.toml` pubblica `site/` e aggiunge intestazioni di sicurezza. Collegare GitHub a Netlify per deploy automatici oppure usare Netlify CLI con lo stesso percorso. Non sovrascrivere gli archivi esistenti.
-
-**Nota:** archivio editoriale non ufficiale; immagini e contenuti soggetti ai diritti dei rispettivi titolari.
+GitHub Actions verifica il deployment GitHub Pages; non garantisce un collaudo visivo. Il progetto Netlify può esistere senza contenuti pubblicati: controllare lo stato del primo deploy nella dashboard. Non pubblicare fotografie o copertine prive dei diritti necessari. Archivio indipendente non ufficiale.
