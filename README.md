@@ -5,7 +5,7 @@
 
 A cura di **Salvatore Sinatra**.
 
-> **Stato del progetto:** repository e sito in preparazione. Il materiale sorgente dovrà essere esaminato e riorganizzato prima della pubblicazione; le sezioni descritte sono obiettivi editoriali, non funzionalità già verificate.
+> **Stato del progetto (17 ottobre 2026):** versione **v20 DC** pubblicata su GitHub Pages mediante GitHub Actions. L’HTML compilato è in `site/index.html`; il precedente `site/index.html` è conservato come `site/index-legacy-pre-v20dc.html`. Il progetto Netlify di produzione è predisposto, ma il suo primo deploy non risulta ancora effettuato.
 
 ## Il progetto
 
@@ -13,7 +13,7 @@ A cura di **Salvatore Sinatra**.
 
 L'archivio intende offrire una consultazione sistematica di opere, percorsi creativi e contesto storico-musicale, mantenendo distinte le informazioni documentate dall'analisi critica e dai contenuti redazionali.
 
-## Struttura editoriale prevista
+## Architettura editoriale e verifica
 
 - **Tom Shear e Assemblage 23:** identità del progetto, biografia e cronologia artistica.
 - **Discografia completa da verificare:** album, EP, singoli, edizioni speciali, raccolte, ristampe e materiale d'archivio.
@@ -23,27 +23,28 @@ L'archivio intende offrire una consultazione sistematica di opere, percorsi crea
 - **Approfondimenti:** temi, estetica sonora, influenze e rapporto con futurepop, EBM e industrial.
 - **Media e fonti:** immagini e video autorizzati, collegamenti e documentazione delle informazioni.
 
-L'elenco definisce la **struttura da sviluppare**; non afferma che tutte le sezioni siano già presenti nel sito attuale.
+L'elenco descrive gli ambiti editoriali del progetto. La verifica puntuale di immagini, singoli approfondimenti e navigazione resta distinta dall'esito positivo del deploy.
 
-## Revisione del pacchetto sorgente
+## Versione v20 DC — produzione
 
-Il progetto verrà migrato dal pacchetto locale `assemblage23-sito-completo.zip`, **senza distribuirlo automaticamente così com'è**. Prima della pubblicazione occorre:
+- **Sorgente editoriale:** `Assemblage 23 Italia v20.dc.html`, versione DC del pacchetto originale fornito dal curatore.
+- **Build pubblicata:** `Assemblage 23 Italia - completo.html`, HTML compilato presente nella directory `dist/` del medesimo archivio.
+- **Homepage in produzione:** `site/index.html` con metadati SEO e attributo lingua italiana.
+- **Copia precedente:** `site/index-legacy-pre-v20dc.html`.
+- **Sottopagine e asset storici:** conservati nella cartella `site/`.
+- **Deploy GitHub Pages:** workflow `.github/workflows/deploy.yml`, pubblicazione automatica della cartella `site/` da `main`.
+- **Deploy Netlify:** progetto `assemblage23-italia`, cartella `site/` configurata in `netlify.toml`. Collegamento della repository Netlify e primo deploy ancora da confermare.
+- **Anteprima separata:** branch `preview/staging` e progetto Netlify `assemblage23-italia-preview`.
 
-1. Analizzare gerarchia delle cartelle, pagine, collegamenti e dipendenze.
-2. Conservare i contenuti originali validi e identificare duplicazioni o informazioni non verificate.
-3. Correggere percorsi assoluti, riferimenti a `localhost`, asset mancanti e incompatibilità con GitHub Pages.
-4. Controllare il funzionamento della navigazione e la compatibilità responsive.
-5. Verificare permessi e provenienza dei materiali multimediali.
-6. Pubblicare una build verificata, mantenendo una copia del pacchetto sorgente fuori dall'output del sito.
+Le verifiche GitHub Actions confermano la pubblicazione dell'artefatto, ma non equivalgono a un collaudo visivo completo. Gli ulteriori materiali devono rispettare condizioni di utilizzo e licenze.
 
-## Indirizzo e pubblicazione
+## Collegamenti
 
-- **Repository prevista:** `salvatoresinatra0001-ux/assemblage23-italia`
-- **GitHub Pages (indirizzo previsto, non ancora confermato attivo):** `https://salvatoresinatra0001-ux.github.io/assemblage23-italia/`
-- **Lingua principale:** italiano (`it-IT`).
-- **Distribuzione:** sito statico tramite branch o GitHub Actions, secondo la struttura sorgente effettivamente accertata.
-
-Per un sito statico già compilato, è possibile pubblicare da **Settings → Pages → Deploy from a branch** scegliendo `main` e la cartella pubblica. Per framework che richiedono una build è preferibile un workflow **GitHub Actions**. L'impostazione effettiva dipende dalla tecnologia riscontrata nei file del progetto.
+- **Sito GitHub Pages:** https://salvatoresinatra0001-ux.github.io/assemblage23-italia/
+- **Repository:** https://github.com/salvatoresinatra0001-ux/assemblage23-italia
+- **Netlify produzione (progetto):** https://app.netlify.com/projects/assemblage23-italia
+- **Netlify anteprima (progetto):** https://app.netlify.com/projects/assemblage23-italia-preview
+- **Lingua:** italiano (`it-IT`).
 
 ## Criteri di documentazione
 
@@ -66,4 +67,4 @@ L'eventuale licenza del codice sorgente non si estende automaticamente ai conten
 
 **Curatela e progetto editoriale:** Salvatore Sinatra  
 **Contesto:** Music Archives Italia · Archivio musicale indipendente  
-**Versione documentale:** 1.0 · 15 ottobre 2026
+**Versione documentale:** v20 DC · 17 ottobre 2026
