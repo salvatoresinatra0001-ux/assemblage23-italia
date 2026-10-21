@@ -312,7 +312,11 @@
       applyScrollState();
     }
     const links = Array.from(document.querySelectorAll('.nav-links a'));
-    const sections = links.map((link) => ({ link, target: document.querySelector(link.getAttribute('href')) })).filter((item) => item.target);
+    // Only resolve in-page fragment links; page URLs like ./date.html are not CSS selectors.
+    const sections = links.map((link) => {
+      const href = link.getAttribute('href') || '';
+      return { link, target: href.startsWith('#') ? document.querySelector(href) : null };
+    }).filter((item) => item.target);
     if ('IntersectionObserver' in window && sections.length) {
       const observer = new IntersectionObserver((entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
