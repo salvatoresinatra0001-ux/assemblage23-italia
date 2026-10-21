@@ -5,7 +5,7 @@
 
 A cura di **Salvatore Sinatra**.
 
-> **Stato aggiornato (21 ottobre 2026):** la revisione **V23 Suprema** è in lavorazione sul branch `v23-suprema-staging-20261021`, derivato da V22. `main` e il sito di produzione non sono stati modificati da questa revisione. Netlify riporta un deploy manuale in stato `ready`, pubblicato il 17 ottobre 2026, senza branch o commit associati nei metadati verificati; il collegamento automatico con GitHub e una preview Netlify devono ancora essere confermati.
+> **Stato aggiornato (21 ottobre 2026):** la revisione V24 è disponibile nel branch `v24-sync-netlify-seo-audit-20261021`, derivato da `v23-suprema-staging-20261021`. `main` non viene modificato direttamente. Il deploy Netlify di produzione è in stato `ready`, ma i metadati mostrano origine manuale (`drop`) senza branch o commit associati. La sincronizzazione automatica GitHub → Netlify è quindi ancora da configurare e verificare.
 
 ## Il progetto
 
@@ -16,43 +16,54 @@ L'archivio intende offrire una consultazione sistematica di opere, percorsi crea
 ## Architettura editoriale e verifica
 
 - **Tom Shear e Assemblage 23:** identità del progetto, biografia e cronologia artistica.
-- **Discografia completa da verificare:** album, EP, singoli, edizioni speciali, raccolte, ristampe e materiale d'archivio.
-- **Tracce e crediti:** elenchi dei brani, date di pubblicazione, etichette e partecipazioni, solo quando documentati.
-- **Remix e collaborazioni:** lavori di e con altri artisti, con distinzione tra remix ufficiali, featuring, produzioni e progetti collegati.
-- **Concerti e tournée:** documentazione storica e rimandi alle comunicazioni ufficiali per le date future.
-- **Approfondimenti:** temi, estetica sonora, influenze e rapporto con futurepop, EBM e industrial.
-- **Media e fonti:** immagini e video autorizzati, collegamenti e documentazione delle informazioni.
+- **Discografia:** album, EP, singoli, edizioni speciali, raccolte, ristampe e materiale d'archivio, da mantenere verificati.
+- **Tracce e crediti:** brani, date di pubblicazione, etichette e partecipazioni, quando documentati.
+- **Remix e collaborazioni:** distinzione tra remix ufficiali, featuring, produzioni e progetti collegati.
+- **Concerti e tournée:** archivio storico e rimandi a comunicazioni ufficiali per date future.
+- **Approfondimenti:** estetica sonora, temi, influenze e contesto futurepop, EBM e industrial.
+- **Media e fonti:** materiali con diritti verificati, collegamenti primari e date di consultazione.
 
-L'elenco descrive gli ambiti editoriali del progetto. La verifica puntuale di immagini, singoli approfondimenti e navigazione resta distinta dall'esito positivo del deploy.
+La presenza di contenuti nell'archivio non sostituisce la verifica della loro accuratezza, delle fonti e dei diritti d'uso.
 
-## Baseline editoriale V20 DC e revisione V23 — staging
+## Revisioni e fonti di pubblicazione
 
-- **Sorgente editoriale:** `Assemblage 23 Italia v20.dc.html`, versione DC del pacchetto originale fornito dal curatore.
-- **Build pubblicata:** `Assemblage 23 Italia - completo.html`, HTML compilato presente nella directory `dist/` del medesimo archivio.
-- **Homepage sorgente:** `site/index.html` contiene il bundle visuale V22; le pagine HTML editoriali originali e la copia legacy restano nella directory `site/`.
-- **Revisione V23:** favicon SVG ad alta risoluzione, menu Fonti accessibile, palette alternative con arancione identitario e aggiornamento dei canonical al dominio `www.assemblage23.it`.
-- **Copia precedente:** `site/index-legacy-pre-v20dc.html`.
-- **Sottopagine e asset storici:** conservati nella cartella `site/`.
-- **Deploy GitHub Pages:** workflow `.github/workflows/deploy.yml`, pubblicazione automatica della cartella `site/` da `main`.
-- **Deploy Netlify corrente:** progetto `assemblage23-italia`; l’ultimo deploy verificato è manuale (`drop`) e non riporta commit/branch. Nessuna modifica V23 è stata pubblicata sul dominio durante questa revisione.
-- **Anteprima Netlify:** non verificata; la ricerca tra i progetti Netlify accessibili non ha restituito `assemblage23-italia-preview`. Non trattare una preview come pubblicata finché non è confermata dalla dashboard.
+- **Baseline visuale:** bundle editoriale V23 e pagine nella cartella `site/`.
+- **Branch V23:** `v23-suprema-staging-20261021`.
+- **Branch V24:** `v24-sync-netlify-seo-audit-20261021`, area di revisione con audit tecnico, controlli automatici e header di pubblicazione.
+- **Homepage:** `site/index.html`; il documento è un bundle JavaScript che ricostruisce la UI, da collaudare con rendering reale e senza JavaScript.
+- **Favicon:** `site/favicon.svg`, SVG vettoriale, accento arancione `#FF3B1F`; web manifest in `site/site.webmanifest`.
+- **Crawler:** `site/robots.txt` e `site/sitemap.xml`.
+- **Audit automatico:** `node scripts/seo-audit.mjs`.
+- **Workflow di controllo:** `.github/workflows/seo-audit.yml`.
+- **Header statici Netlify:** `site/_headers`.
+- **Deploy GitHub Pages:** `.github/workflows/deploy.yml`, pubblica `site/` dal branch `main`; la branch V24 non pubblica su GitHub Pages fino al merge.
+- **Deploy Netlify:** progetto `assemblage23-italia`, dominio canonico `https://www.assemblage23.it`. L'ultimo deploy controllato risulta manuale e non associato a commit/branch. La CI/CD GitHub non può essere data per collegata finché non è visibile nella configurazione Netlify.
 
-Le verifiche GitHub Actions confermano la pubblicazione dell'artefatto, ma non equivalgono a un collaudo visivo completo. Gli ulteriori materiali devono rispettare condizioni di utilizzo e licenze.
+## Audit V24
+
+Il report completo è in [`docs/SEO-AUDIT-V24.md`](docs/SEO-AUDIT-V24.md). L'audit automatico verifica:
+
+- lingua HTML, title e meta description;
+- canonical, Open Graph e Twitter/X card;
+- JSON-LD di tipo `WebSite`;
+- robots, sitemap, URL unici e hostname canonico;
+- favicon, manifest e direttiva noindex per la pagina 404.
+
+L'audit tecnico non misura l'indicizzazione, la reputazione, i backlink o i Core Web Vitals. Per completare la verifica servono Search Console, un crawl di tutte le URL e un collaudo Lighthouse/visivo.
 
 ## Collegamenti
 
-- **Sito GitHub Pages storico:** https://salvatoresinatra0001-ux.github.io/assemblage23-italia/ (non è il dominio canonico SEO).
+- **Dominio finale:** https://www.assemblage23.it/
 - **Repository:** https://github.com/salvatoresinatra0001-ux/assemblage23-italia
-- **Netlify produzione (progetto):** https://app.netlify.com/projects/assemblage23-italia
-- **Anteprima Netlify:** da configurare e verificare; il progetto `assemblage23-italia-preview` non è stato trovato fra i progetti Netlify accessibili.
-- **Lingua:** italiano (`it-IT`).
+- **Branch V24:** https://github.com/salvatoresinatra0001-ux/assemblage23-italia/tree/v24-sync-netlify-seo-audit-20261021
+- **Netlify produzione:** https://app.netlify.com/projects/assemblage23-italia
+- **Sito GitHub Pages storico:** https://salvatoresinatra0001-ux.github.io/assemblage23-italia/ — non è il canonical SEO del dominio finale.
 
-## Criteri di documentazione
+## Criteri editoriali e fonti
 
-Le schede discografiche dovrebbero riportare, ove disponibili, titolo, tipologia, anno, etichetta, formato, tracklist, collaboratori, collegamento alla fonte e data di verifica. Distinguere sempre dati certi, notizie da confermare e valutazioni editoriali.
+Le schede discografiche dovrebbero riportare, quando disponibili, titolo, tipologia, anno, etichetta, formato, tracklist, collaboratori, fonte e data di verifica. Distinguere dati documentati, informazioni da confermare e valutazioni critiche.
 
-## Fonti ufficiali
-
+Fonti ufficiali di riferimento:
 - [Sito ufficiale Assemblage 23](https://www.assemblage23.com/)
 - [Assemblage 23 su Bandcamp](https://assemblage23.bandcamp.com/)
 
@@ -60,7 +71,7 @@ Le schede discografiche dovrebbero riportare, ove disponibili, titolo, tipologia
 
 **Assemblage 23 Italia è un progetto editoriale indipendente e non ufficiale.** Non è affiliato a Tom Shear, ad Assemblage 23, ai relativi rappresentanti o alle etichette discografiche.
 
-Marchi, loghi, testi musicali, copertine, fotografie, video e registrazioni di terzi appartengono ai rispettivi titolari. **L'attribuzione della fonte non sostituisce un'autorizzazione all'utilizzo**. Ogni materiale pubblicato deve disporre di un'adeguata base giuridica per il suo impiego.
+Marchi, loghi, testi musicali, copertine, fotografie, video e registrazioni di terzi appartengono ai rispettivi titolari. **L'attribuzione della fonte non sostituisce un'autorizzazione all'utilizzo.** Ogni materiale pubblicato deve disporre di un'adeguata base giuridica per il suo impiego.
 
 L'eventuale licenza del codice sorgente non si estende automaticamente ai contenuti editoriali e ai materiali di terzi. Salvatore Sinatra mantiene l'attribuzione dei propri testi originali.
 
@@ -68,4 +79,4 @@ L'eventuale licenza del codice sorgente non si estende automaticamente ai conten
 
 **Curatela e progetto editoriale:** Salvatore Sinatra  
 **Contesto:** Music Archives Italia · Archivio musicale indipendente  
-**Versione documentale:** v20 DC · 17 ottobre 2026
+**Stato della revisione:** V24 · 21 ottobre 2026
