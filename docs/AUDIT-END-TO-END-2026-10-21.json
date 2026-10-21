@@ -8,12 +8,17 @@
     "reason": "Accesso diretto ai file del sandbox Base44 non disponibile nel piano workspace"
   },
   "github": {
-    "main_commit": "269979c5f868ab959081ac8489c144d28e040893",
+    "main_commit": "d184b9429733b3223fd993f9aac271a8a23992e5",
     "prior_commit_before_audit": "faedad4cc9e96a8920f1a21d7615a008e910d8f4",
-    "audit_doc_commit": "269979c5f868ab959081ac8489c144d28e040893",
+    "audit_doc_commit": "d184b9429733b3223fd993f9aac271a8a23992e5",
     "workflow_run_61": "success",
-    "workflow_run_62": "in progress at last check",
-    "repo_v2_exists": false
+    "workflow_run_62": "success",
+    "repo_v2_exists": false,
+    "workflow_run_63": "success",
+    "workflow_run_64": "waiting at last check",
+    "workflow_run_64_url": "https://github.com/salvatoresinatra0001-ux/assemblage23-italia/actions/runs/39535454734",
+    "final_audit_doc_commit": "d184b9429733b3223fd993f9aac271a8a23992e5",
+    "final_state_checked_at": "2026-10-21 04:53 Europe/Rome"
   },
   "netlify": {
     "production": {
