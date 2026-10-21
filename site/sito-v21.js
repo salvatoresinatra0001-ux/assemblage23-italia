@@ -287,7 +287,105 @@
     });
   }
 
-  if (document.readyState === "loading") {
+
+
+  // V22 — interattività progressive enhancement; no external dependencies.
+  function initializeV22Visuals() {
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const header = document.querySelector('.nav');
+    const logo = document.querySelector('.wordmark');
+    if (logo) {
+      // The brand mark remains visible even while the document is scrolling.
+      logo.classList.add('v22-brand-anchor');
+      logo.setAttribute('aria-label', 'Assemblage 23 Italia — torna all’inizio');
+      if (!logo.querySelector('.v22-logo-dot')) {
+        const dot = document.createElement('span');
+        dot.className = 'v22-logo-dot';
+        dot.setAttribute('aria-hidden', 'true');
+        logo.appendChild(dot);
+      }
+    }
+    if (header) {
+      header.classList.add('v22-header');
+      const applyScrollState = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
+      window.addEventListener('scroll', applyScrollState, { passive: true });
+      applyScrollState();
+    }
+    const links = Array.from(document.querySelectorAll('.nav-links a'));
+    const sections = links.map((link) => ({ link, target: document.querySelector(link.getAttribute('href')) })).filter((item) => item.target);
+    if ('IntersectionObserver' in window && sections.length) {
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        sections.forEach(({ link, target }) => {
+          const active = target === visible.target;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }, { rootMargin: '-20% 0px -65% 0px', threshold: [0, .15, .35] });
+      sections.forEach(({ target }) => observer.observe(target));
+    }
+    if (!document.querySelector('[data-v22-top]')) {
+      const top = document.createElement('button');
+      top.type = 'button'; top.dataset.v22Top = ''; top.className = 'v22-top';
+      top.setAttribute('aria-label', 'Torna all’inizio'); top.textContent = '↑';
+      document.body.appendChild(top);
+      const updateTop = () => top.classList.toggle('is-visible', window.scrollY > 520);
+      window.addEventListener('scroll', updateTop, { passive: true });
+      updateTop();
+      top.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
+    }
+    // Global keyboard entry points; never steal keystrokes while editing a field.
+    const searchButton = document.querySelector('[data-v21-search], [data-search-open], #open-search, [aria-label*="Cerca"]');
+    document.addEventListener('keydown', (event) => {
+      const target = event.target;
+      const typing = target && (target.matches('input, textarea, select') || target.isContentEditable);
+      if (!typing && event.key === '/' && !event.metaKey && !event.ctrlKey && !event.altKey && searchButton) {
+        event.preventDefault(); searchButton.click();
+      }
+      if (!typing && (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k' && searchButton) {
+        event.preventDefault(); searchButton.click();
+      }
+    });
+    // Reusable color theme control: default is OLED black, alternatives are user-selectable.
+    if (!document.querySelector('[data-v22-theme]') && header) {
+      const theme = document.createElement('button');
+      theme.type = 'button'; theme.dataset.v22Theme = ''; theme.className = 'v22-theme';
+      theme.setAttribute('aria-label', 'Cambia accento cromatico'); theme.title = 'Cambia accento cromatico';
+      theme.innerHTML = '<span aria-hidden="true">◉</span><span class="v22-theme-label">Colore</span>';
+      const navActions = header.querySelector('.nav-links');
+      if (navActions) navActions.insertAdjacentElement('afterend', theme);
+      const colors = [
+        { name: 'Lime AMOLED', accent: '#d6f25a', soft: 'rgba(214,242,90,.12)' },
+        { name: 'Electric blue', accent: '#79c8ff', soft: 'rgba(121,200,255,.12)' },
+        { name: 'Signal orange', accent: '#ff8a52', soft: 'rgba(255,138,82,.12)' },
+        { name: 'Ultraviolet', accent: '#c3a2ff', soft: 'rgba(195,162,255,.12)' }
+      ];
+      let active = 0;
+      theme.addEventListener('click', () => {
+        active = (active + 1) % colors.length;
+        const palette = colors[active];
+        document.documentElement.style.setProperty('--v22-accent', palette.accent);
+        document.documentElement.style.setProperty('--v22-accent-soft', palette.soft);
+        document.documentElement.style.setProperty('--v22-contrast-accent', palette.accent);
+        document.documentElement.dataset.v22Palette = String(active);
+        theme.setAttribute('aria-label', 'Accento cromatico: ' + palette.name + '. Clicca per cambiare');
+        theme.title = 'Accento: ' + palette.name;
+        const label = theme.querySelector('.v22-theme-label');
+        if (label) label.textContent = palette.name;
+      });
+    }
+    // External links opened in new tabs must not get an opener reference.
+    document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+      const rel = new Set((link.rel || '').split(/\s+/).filter(Boolean));
+      rel.add('noopener'); rel.add('noreferrer'); link.rel = Array.from(rel).join(' ');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeV22Visuals, { once: true });
+  else initializeV22Visuals();
+
+  if (document.readyState === 'loading') {
     document.addEventListener("DOMContentLoaded", initialize, { once: true });
   } else {
     initialize();
