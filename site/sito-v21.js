@@ -371,6 +371,7 @@
         active = (active + 1) % colors.length;
         const palette = colors[active];
         document.documentElement.style.setProperty('--v22-accent', palette.accent);
+        document.documentElement.style.setProperty('--color-accent', palette.accent);
         document.documentElement.style.setProperty('--v22-accent-soft', palette.soft);
         document.documentElement.style.setProperty('--v22-contrast-accent', palette.accent);
         document.documentElement.dataset.v22Palette = String(active);
