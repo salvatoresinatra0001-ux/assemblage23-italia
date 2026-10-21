@@ -249,4 +249,8 @@
   a23V21Script.src = new URL("sito-v21.js", document.currentScript && document.currentScript.src ? document.currentScript.src : location.href).href;
   a23V21Script.defer = true;
   document.head.appendChild(a23V21Script);
+  const a23FontiScript = document.createElement("script");
+  a23FontiScript.src = new URL("fonti.js", document.currentScript && document.currentScript.src ? document.currentScript.src : location.href).href;
+  a23FontiScript.dataset.a23FontiScript = "true";
+  document.head.appendChild(a23FontiScript);
 })();

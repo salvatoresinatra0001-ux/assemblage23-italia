@@ -1,4 +1,12 @@
-# Assemblage 23 Italia — Netlify, versione definitiva v20 DC
+# Assemblage 23 Italia — Netlify e flusso di rilascio V23
+
+## Stato verificato al 21 ottobre 2026
+
+- Dominio pubblico configurato: `https://www.assemblage23.it`.
+- Il deploy pubblico Netlify verificato (`6ad2eb01ffc717bcc3f707a8`) è `ready`, pubblicato il 17 ottobre 2026 tramite caricamento manuale (`drop`); i metadati non riportano branch, commit o repository collegati.
+- Il branch `v23-suprema-staging-20261021` contiene modifiche non pubblicate. Non è stato eseguito un deploy in produzione.
+- Il progetto di anteprima `assemblage23-italia-preview` non risulta disponibile fra i progetti Netlify accessibili alla verifica.
+- Prima del rilascio, collegare e verificare il repository GitHub con il progetto Netlify esistente, quindi testare una preview separata. Non impostare il branch V23 come branch di produzione.
 
 ## Un'unica sorgente, due hosting
 
@@ -14,7 +22,7 @@
 
 ## Attivazione una tantum dal browser Netlify
 
-Collegare il progetto Netlify già creato al repository GitHub `salvatoresinatra0001-ux/assemblage23-italia`. Impostare `main` come production branch, `site` come publish directory e nessun build command. Il primo deploy deve terminare con esito Published/Ready. Successivamente Netlify aggiorna il sito automaticamente a ogni push su `main`.
+Collegare il progetto Netlify già creato al repository GitHub `salvatoresinatra0001-ux/assemblage23-italia`. Impostare `main` come production branch, `site` come publish directory e nessun build command. Dopo il collegamento, verificare un deploy Git da `main` con esito Published/Ready e il commit/branch nei metadati. Solo a quel punto si può considerare attivo il deploy automatico a ogni push su `main`.
 
 Non ricreare il progetto Netlify e non utilizzare `preview/staging` come branch di produzione.
 
