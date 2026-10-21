@@ -243,4 +243,10 @@
         : "Resta qui. Non è partito nulla: per raggiungere il progetto usa il sito ufficiale.";
     });
   });
+
+  // Assemblage 23 Italia v21: progressive enhancement condiviso.
+  const a23V21Script = document.createElement("script");
+  a23V21Script.src = new URL("sito-v21.js", document.currentScript && document.currentScript.src ? document.currentScript.src : location.href).href;
+  a23V21Script.defer = true;
+  document.head.appendChild(a23V21Script);
 })();
