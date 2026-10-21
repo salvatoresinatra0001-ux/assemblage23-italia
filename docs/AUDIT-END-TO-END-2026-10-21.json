@@ -1,0 +1,96 @@
+{
+  "audit_date": "2026-10-21",
+  "status": "PARTIAL — V2 non pronta per deploy",
+  "source_of_truth": {
+    "base44_app": "6ad81c942f5f41099acebef8",
+    "active_branch": "main",
+    "source_export_verified": false,
+    "reason": "Accesso diretto ai file del sandbox Base44 non disponibile nel piano workspace"
+  },
+  "github": {
+    "main_commit": "269979c5f868ab959081ac8489c144d28e040893",
+    "prior_commit_before_audit": "faedad4cc9e96a8920f1a21d7615a008e910d8f4",
+    "audit_doc_commit": "269979c5f868ab959081ac8489c144d28e040893",
+    "workflow_run_61": "success",
+    "workflow_run_62": "in progress at last check",
+    "repo_v2_exists": false
+  },
+  "netlify": {
+    "production": {
+      "project": "assemblage23-italia",
+      "id": "affca11b-d5db-4780-b0e5-64b62af13d41",
+      "url": "https://www.assemblage23.it",
+      "deploy": "6ad2eb01ffc717bcc3f707a8",
+      "state": "ready",
+      "deploy_source": "drop",
+      "commit_ref": null,
+      "source_zip": false
+    },
+    "v2": {
+      "project": "assemblage23-italia-v2",
+      "id": "bec832a3-a880-45da-baf9-96e3b728dd05",
+      "url": "http://assemblage23-italia-v2.netlify.app",
+      "deploy_exists": false,
+      "non_production_access": "SSO team login required"
+    }
+  },
+  "verified_discrepancies": [
+    {
+      "id": "V-01",
+      "severity": "critical",
+      "finding": "The current Base44 editor build is not proven identical to the static website in GitHub main.",
+      "resolution": "Obtain full Base44 source export before copying into V2."
+    },
+    {
+      "id": "V-02",
+      "severity": "high",
+      "finding": "Base44 has entities Album, NewsArticle, BiographyChapter, GalleryItem and User; GitHub repository reviewed is HTML/CSS/JS without verified migration of these resources.",
+      "resolution": "Export schemas/data/functions/automations and document Base44-only dependencies."
+    },
+    {
+      "id": "V-03",
+      "severity": "high",
+      "finding": "Netlify production deploy is upload/drop sourced, has no commit_ref and has_source_zip=false; Git-connected automatic deployments not verified.",
+      "resolution": "Set up Git connection only for isolated V2 after source export."
+    },
+    {
+      "id": "V-04",
+      "severity": "medium",
+      "finding": "GitHub static homepage HTML contains __bundler_thumbnail and __bundler_loading placeholder markup. Entire document contains embedded __bundler templates, so this alone is not proof of a broken render.",
+      "resolution": "Browser smoke test and runtime validation needed."
+    },
+    {
+      "id": "V-05",
+      "severity": "medium",
+      "finding": "Static homepage canonical and JSON-LD identify GitHub Pages as canonical; robots/sitemap also point to GitHub Pages while Netlify production uses www.assemblage23.it.",
+      "resolution": "Review hostname-specific canonical, robots and sitemap; do so in V2 first."
+    },
+    {
+      "id": "V-06",
+      "severity": "medium",
+      "finding": "404 page points to the GitHub Pages homepage; internal links need host-aware validation.",
+      "resolution": "Run internal link checks against the V2 host."
+    },
+    {
+      "id": "V-07",
+      "severity": "high",
+      "finding": "Netlify V2 project created but no published deploy, and no GitHub V2 repository found.",
+      "resolution": "Import only verified Base44 source, create or connect dedicated repository, then deploy preview."
+    }
+  ],
+  "known_changes": {
+    "production_site_or_domain_modified": false,
+    "production_netlify_settings_modified": false,
+    "base44_files_manually_modified": false,
+    "documentation_added_to_existing_main": true,
+    "github_pages_workflow_triggered_by_docs_commits": true
+  },
+  "next_steps": [
+    "Export actual Base44 application source from editor or by CLI with authenticated local access.",
+    "Inventory files, assets, entity schemas and exported records; exclude secrets.",
+    "Create dedicated GitHub V2 repository and push exact exported source.",
+    "Connect only the V2 Netlify project to the V2 repository.",
+    "Verify build, visual fidelity, links, canonical/robots/sitemap, 404, responsive behavior, accessibility.",
+    "Publish V2 as protected preview, compare with Base44, then ask for approval before production changes."
+  ]
+}
