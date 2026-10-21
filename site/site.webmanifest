@@ -1,0 +1,12 @@
+{
+  "name": "Assemblage 23 Italia",
+  "short_name": "A23 Italia",
+  "description": "Archivio italiano indipendente su Assemblage 23 e Tom Shear.",
+  "lang": "it-IT",
+  "start_url": "/",
+  "scope": "/",
+  "display": "minimal-ui",
+  "background_color": "#0B0B0C",
+  "theme_color": "#FF3B1F",
+  "icons": [{"src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]
+}

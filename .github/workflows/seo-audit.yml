@@ -1,0 +1,30 @@
+name: Technical SEO Audit
+
+on:
+  push:
+    branches:
+      - main
+      - "v*-sync-netlify-seo-audit-*"
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seo-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  technical-seo:
+    name: Validate SEO and publishing metadata
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run technical SEO audit
+        run: node scripts/seo-audit.mjs
