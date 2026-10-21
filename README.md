@@ -5,7 +5,7 @@
 
 A cura di **Salvatore Sinatra**.
 
-> **Stato del progetto (17 ottobre 2026):** versione **v20 DC** pubblicata su GitHub Pages mediante GitHub Actions. L’HTML compilato è in `site/index.html`; il precedente `site/index.html` è conservato come `site/index-legacy-pre-v20dc.html`. Il progetto Netlify di produzione è predisposto, ma il suo primo deploy non risulta ancora effettuato.
+> **Stato aggiornato (21 ottobre 2026):** la revisione **V23 Suprema** è in lavorazione sul branch `v23-suprema-staging-20261021`, derivato da V22. `main` e il sito di produzione non sono stati modificati da questa revisione. Netlify riporta un deploy manuale in stato `ready`, pubblicato il 17 ottobre 2026, senza branch o commit associati nei metadati verificati; il collegamento automatico con GitHub e una preview Netlify devono ancora essere confermati.
 
 ## Il progetto
 
@@ -25,25 +25,26 @@ L'archivio intende offrire una consultazione sistematica di opere, percorsi crea
 
 L'elenco descrive gli ambiti editoriali del progetto. La verifica puntuale di immagini, singoli approfondimenti e navigazione resta distinta dall'esito positivo del deploy.
 
-## Versione v20 DC — produzione
+## Baseline editoriale V20 DC e revisione V23 — staging
 
 - **Sorgente editoriale:** `Assemblage 23 Italia v20.dc.html`, versione DC del pacchetto originale fornito dal curatore.
 - **Build pubblicata:** `Assemblage 23 Italia - completo.html`, HTML compilato presente nella directory `dist/` del medesimo archivio.
-- **Homepage in produzione:** `site/index.html` con metadati SEO e attributo lingua italiana.
+- **Homepage sorgente:** `site/index.html` contiene il bundle visuale V22; le pagine HTML editoriali originali e la copia legacy restano nella directory `site/`.
+- **Revisione V23:** favicon SVG ad alta risoluzione, menu Fonti accessibile, palette alternative con arancione identitario e aggiornamento dei canonical al dominio `www.assemblage23.it`.
 - **Copia precedente:** `site/index-legacy-pre-v20dc.html`.
 - **Sottopagine e asset storici:** conservati nella cartella `site/`.
 - **Deploy GitHub Pages:** workflow `.github/workflows/deploy.yml`, pubblicazione automatica della cartella `site/` da `main`.
-- **Deploy Netlify:** progetto `assemblage23-italia`, cartella `site/` configurata in `netlify.toml`. Collegamento della repository Netlify e primo deploy ancora da confermare.
-- **Anteprima separata:** branch `preview/staging` e progetto Netlify `assemblage23-italia-preview`.
+- **Deploy Netlify corrente:** progetto `assemblage23-italia`; l’ultimo deploy verificato è manuale (`drop`) e non riporta commit/branch. Nessuna modifica V23 è stata pubblicata sul dominio durante questa revisione.
+- **Anteprima Netlify:** non verificata; la ricerca tra i progetti Netlify accessibili non ha restituito `assemblage23-italia-preview`. Non trattare una preview come pubblicata finché non è confermata dalla dashboard.
 
 Le verifiche GitHub Actions confermano la pubblicazione dell'artefatto, ma non equivalgono a un collaudo visivo completo. Gli ulteriori materiali devono rispettare condizioni di utilizzo e licenze.
 
 ## Collegamenti
 
-- **Sito GitHub Pages:** https://salvatoresinatra0001-ux.github.io/assemblage23-italia/
+- **Sito GitHub Pages storico:** https://salvatoresinatra0001-ux.github.io/assemblage23-italia/ (non è il dominio canonico SEO).
 - **Repository:** https://github.com/salvatoresinatra0001-ux/assemblage23-italia
 - **Netlify produzione (progetto):** https://app.netlify.com/projects/assemblage23-italia
-- **Netlify anteprima (progetto):** https://app.netlify.com/projects/assemblage23-italia-preview
+- **Anteprima Netlify:** da configurare e verificare; il progetto `assemblage23-italia-preview` non è stato trovato fra i progetti Netlify accessibili.
 - **Lingua:** italiano (`it-IT`).
 
 ## Criteri di documentazione

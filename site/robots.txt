@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://salvatoresinatra0001-ux.github.io/assemblage23-italia/sitemap.xml
+Sitemap: https://www.assemblage23.it/sitemap.xml
