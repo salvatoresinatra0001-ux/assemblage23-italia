@@ -34,6 +34,10 @@ jobs:
           else
             echo "::error::No deployable website found"; exit 1
           fi
+          # Publish only the existing, unmodified discographic cover assets.
+          mkdir -p _site/assets/copertine-originali
+          cp gallerie/copertine-medium/assets/covers/*.jpg _site/assets/copertine-originali/
+          test -s _site/discografia-streaming.html
           test -s _site/index.html
           touch _site/.nojekyll
           if [ -f _site/a23-data.js ]; then
